@@ -1,9 +1,9 @@
 const { Schema, SchemaTypes, model } = require('mongoose')
 
-const noteSchema = new Schema({
+const bookSchema = new Schema({
   title: SchemaTypes.String,
   body: SchemaTypes.String,
   authorId: SchemaTypes.ObjectId
 })
 
-module.exports = model('Note', noteSchema)
+module.exports = model('Book', bookSchema)

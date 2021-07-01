@@ -16,14 +16,14 @@ async function createBook(req, res) {
       const book = new Book({ ...body, createrId: _id })
       const result = await book.save()
 
-      res.send(result)
+      return res.send(result)
     } catch (e) {
-      res.status(500).send({
+      return res.status(500).send({
         message: 'Something went wrong, please try again.'
       })
     }
   } else {
-    res.status(400).send({
+    return res.status(400).send({
       message: 'Please use a valid Book format for creating a book'
     })
   }
@@ -34,21 +34,21 @@ async function getBook(req, res) {
 
   if (bookId) {
     try {
-      const note = await Book.findOne({ _id: bookId })
-      if (note) {
-        res.send(note)
+      const book = await Book.findOne({ _id: bookId })
+      if (book) {
+        return res.send(book)
       } else {
-        res.status(404).send({
+        return res.status(404).send({
           message: 'Book not found, please try another bookId.'
         })
       }
     } catch (e) {
-      res.status(500).send({
+      return res.status(500).send({
         message: 'Something went wrong, please try again.'
       })
     }
   } else {
-    res.status(400).send({
+    return res.status(400).send({
       message: 'bookId not found in params.'
     })
   }

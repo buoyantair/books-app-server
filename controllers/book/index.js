@@ -7,13 +7,13 @@ const authMiddleware = require('../auth/authMiddleware')
 const bookRouter = express.Router()
 
 async function createBook(req, res) {
-  const { body: { book: data } } = req
+  const { body } = req
 
-  if (data && data.title && data.body) {
+  if (body && body.title && body.body) {
     try {
       const { _id } = jwt.decode(req.token)
 
-      const book = new Book({ ...data, authorId: _id })
+      const book = new Book({ ...body, createrId: _id })
       const result = await book.save()
 
       res.send(result)

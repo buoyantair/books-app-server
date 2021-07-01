@@ -1,4 +1,4 @@
-function healthController (req, res) {
+function healthController(req, res) {
   res.contentType('text/plain')
   res.send('Everything is working well!')
 }

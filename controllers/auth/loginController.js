@@ -3,7 +3,7 @@ const user = require('../../models/user')
 
 const { SECRET_KEY } = process.env
 
-async function loginController (req, res) {
+async function loginController(req, res) {
   const { body: { username, password } } = req
 
   if (!username && password) {
@@ -18,6 +18,11 @@ async function loginController (req, res) {
     })
   }
 
+  if (!username && !password) {
+    return res.status(401).send({
+      message: 'Please provide both username & password to login.'
+    })
+  }
 
   if (username && password) {
     const result = await user.findOne({
@@ -34,10 +39,6 @@ async function loginController (req, res) {
         message: 'User not found, please create an account to login.'
       })
     }
-  } else {
-    return res.status(401).send({
-      message: 'Please provide both the username & password.'
-    })
   }
 }
 

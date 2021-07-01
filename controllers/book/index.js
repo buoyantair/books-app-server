@@ -13,8 +13,8 @@ async function createBook(req, res) {
     try {
       const { _id } = jwt.decode(req.token)
 
-      const note = new Note({ ...data, authorId: _id })
-      const result = await note.save()
+      const book = new Book({ ...data, authorId: _id })
+      const result = await book.save()
 
       res.send(result)
     } catch (e) {

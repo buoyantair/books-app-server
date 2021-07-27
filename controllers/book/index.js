@@ -6,6 +6,16 @@ const Book = require('../../models/book')
 const authMiddleware = require('../auth/authMiddleware')
 const bookRouter = express.Router()
 
+/**
+ * @api {post} /book/create Create a book
+ * @apiName createBook
+ * @apiGroup Book
+ * @apiDescription Create a book
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ * @return {express.Response} 
+ */
 async function createBook(req, res) {
   const { body } = req
 
@@ -29,6 +39,16 @@ async function createBook(req, res) {
   }
 }
 
+/**
+ * @api {get} /book/:bookId Get a book
+ * @apiName getBook
+ * @apiGroup Book
+ * @apiDescription Get a book
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ * @return {express.Response}
+ */
 async function getBook(req, res) {
   const bookId = req.params.bookId
 

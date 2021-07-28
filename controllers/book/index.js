@@ -7,7 +7,7 @@ const authMiddleware = require('../auth/authMiddleware')
 const bookRouter = express.Router()
 
 /**
- * @api {post} /book/create Create a book
+ * @api {post} /book/create
  * @apiName createBook
  * @apiGroup Book
  * @apiDescription Create a book
@@ -26,21 +26,21 @@ async function createBook(req, res) {
       const book = new Book({ ...body, createrId: _id })
       const result = await book.save()
 
-      return res.send(result)
+      return res.json(result)
     } catch (e) {
-      return res.status(500).send({
+      return res.status(500).json({
         message: 'Something went wrong, please try again.'
       })
     }
   } else {
-    return res.status(400).send({
+    return res.status(400).json({
       message: 'Please use a valid Book format for creating a book'
     })
   }
 }
 
 /**
- * @api {get} /book/:bookId Get a book
+ * @api {get} /book/:bookId
  * @apiName getBook
  * @apiGroup Book
  * @apiDescription Get a book
@@ -56,19 +56,19 @@ async function getBook(req, res) {
     try {
       const book = await Book.findOne({ _id: bookId })
       if (book) {
-        return res.send(book)
+        return res.json(book)
       } else {
-        return res.status(404).send({
+        return res.status(404).json({
           message: 'Book not found, please try another bookId.'
         })
       }
     } catch (e) {
-      return res.status(500).send({
+      return res.status(500).json({
         message: 'Something went wrong, please try again.'
       })
     }
   } else {
-    return res.status(400).send({
+    return res.status(400).json({
       message: 'bookId not found in params.'
     })
   }

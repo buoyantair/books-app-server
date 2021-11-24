@@ -23,7 +23,7 @@ async function createBook(req, res) {
     try {
       const { _id } = jwt.decode(req.token)
 
-      const book = new Book({ ...body, createrId: _id })
+      const book = new Book({ ...body, creatorId: _id })
       const result = await book.save()
 
       return res.json(result)

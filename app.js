@@ -6,6 +6,7 @@ const authRouter = require('./controllers/auth')
 const bookRouter = require('./controllers/book')
 const bookReviewRouter = require('./controllers/bookReview')
 const searchRouter = require('./controllers/search')
+
 const app = express()
 app.use(jsonParser())
 app.use(urlencodedParser({ extended: true }))

@@ -50,11 +50,9 @@ async function createBookReview(req, res) {
   const { body: {
     comment,
     rating,
-    bookId,
-    createdAt,
-    updatedAt
+    bookId
   } } = req;
-  if (comment && rating && bookId && createdAt && updatedAt) {
+  if (comment && rating && bookId) {
     try {
       const { _id: userId } = jwt.decode(req.token)
       const bookReview = new BookReview({
@@ -62,8 +60,6 @@ async function createBookReview(req, res) {
         rating,
         bookId,
         userId,
-        createdAt,
-        updatedAt,
       })
       const result = await bookReview.save()
       return res.status(201).json(result)
